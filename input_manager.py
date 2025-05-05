@@ -1,17 +1,6 @@
+
+
 def get_main_menu_choice():
-    print("""
-*****************************
-            Menu
-*****************************
-1: Add items
-2: Remove items
-3: Update item quantities
-4: Search for items
-5: View inventory statistics
-6: Save inventory to file
-7: Load inventory from file
-8: Exit
-          """)
     # The while loop will keep prompting the user to select a menu option and will only stop once the user inputs a valid number
     while True:
         try:
@@ -38,5 +27,18 @@ def get_search_term():
 
 
 if __name__ == "__main__":
+    print("""
+*****************************
+            Menu
+*****************************
+1: Add items
+2: Remove items
+3: Update item quantities
+4: Search for items
+5: View inventory statistics
+6: Save inventory to file
+7: Load inventory from file
+8: Exit
+          """)
     choice = get_main_menu_choice()
     print("You Chose:", choice)
