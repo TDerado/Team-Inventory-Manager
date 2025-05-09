@@ -1,6 +1,11 @@
-def search_item(inventory, search_term, exact_match_flag):
+def search_item(inventory, search_term):
     """ Checks given list of dictionaries for items with name value containing a search_term """
     matching_items = []
+
+    exact_match_flag = ''
+    while exact_match_flag != 'y' and exact_match_flag != 'n':
+        exact_match_flag = input("would you like to match exactly? (y/n): ")
+
     try:
         if exact_match_flag == 'y':
             for item_dict in inventory:
@@ -18,7 +23,7 @@ def search_item(inventory, search_term, exact_match_flag):
 if __name__ == "__main__":
     inv = [{"name":"test", "quantity": 3}, {"name":"object", "quantity": 1}, {"name":"tests", "quantity": 33}, {"name":"None", "quantity": 33}]
     term = input("Test Search Term: ")
-    result = search_item(inv, term, 'n')
+    result = search_item(inv, term)
     if result == -1:
         print(f"Could not process last selection")
         raise SystemExit
