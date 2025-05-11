@@ -6,8 +6,8 @@ def save_inventory(inventory, filename="inventory_data.txt"):
     """Save inventory dictionary to a plain text file."""
     try:
         with open(filename, "w") as f:
-            for item, quantity in inventory.items():
-                f.write(f"{item},{quantity}\n")
+            for item_dict in inventory:
+                f.write(f"{item_dict["name"]},{item_dict["quantity"]}\n")
         print(f"Inventory saved to '{filename}'")
     except Exception as e:
         print(f"Error saving inventory: {e}")
@@ -20,15 +20,18 @@ def save_inventory(inventory, filename="inventory_data.txt"):
 
 def load_inventory(filename="inventory_data.txt"):
     """Load inventory from a plain text file. Return an empty dict if file not found or invalid."""
-    inventory = {}
+    inventory = []
     try:
         with open(filename, "r") as f:
             for line in f:
                 line = line.strip()
                 if line:
                     try:
-                        item, quantity = line.split(",")
-                        inventory[item] = int(quantity)
+                        name, quantity = line.split(",")
+                        inventory.append({
+                            "name": name,
+                            "quantity": int(quantity)
+                        }) 
                     except ValueError:
                         print(f"Skipping invalid line: {line}")
         print(f"Inventory was loaded from '{filename}'")
@@ -37,4 +40,5 @@ def load_inventory(filename="inventory_data.txt"):
     except Exception as e:
         print(f"Error loading inventory: {e}")
     return inventory
+
 
