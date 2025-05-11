@@ -155,9 +155,10 @@ if __name__ == "__main__":
         inventory = []
     except Exception as e:
         print(f"Warning, could not preload inventory! load inventory before continuing: {e}")
+    print("\nInventory Manager:")
     while not end:
         result = True
-        input("\nInventory Manager:")
+        input("\n(Press enter to continue)")
         print("""
         *****************************
                     Menu
