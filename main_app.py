@@ -31,7 +31,7 @@ def add_item(inventory):
 # Modules needed to run (Input_manager, validator, Inventory_operations)
 def remove_item(inventory):
     try:
-        item_name, qty = input_manager.get_item_details()
+        item_name = input_manager.remove_item_name()
 
         valid_name, name_msg = validator.validate_item_name(item_name)
         if not valid_name:
