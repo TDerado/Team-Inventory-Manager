@@ -37,6 +37,10 @@ def get_average_quantity(inventory):
     return total_quantity / count
 
 # Example usage
+if __name__ == "__main__":
+    print("Inventory:")
+    for item in inventory:
+        print("- " + item['name'] + ": " + str(item['quantity']))
 print("Inventory:")
 for item in inventory:
     print(f"- {item['name']}: {item['quantity']}")
@@ -46,17 +50,17 @@ print("Total quantity:", get_total_quantity(inventory))
 print("Top item(s):", get_top_item(inventory))
 
 #  For Main tests
-if __name__ == "__main__":
-    print("Inventory:")
-    for item in inventory:
-        print("- " + item['name'] + ": " + str(item['quantity']))
 
-    print("\nDistinct items:", get_inventory_count(inventory))
-    print("Total quantity:", get_total_quantity(inventory))
-    top_item = get_top_item(inventory)
-    print("Top item(s):", top_item)
-    average_quantity = get_average_quantity(inventory)
-    if average_quantity is not None:
-        print("Average quantity per item:", round(average_quantity, 2))
-    else:
-        print("Average quantity per item: None (inventory is empty)")
+print("Inventory:")
+for item in inventory:
+    print("- " + item['name'] + ": " + str(item['quantity']))
+
+print("\nDistinct items:", get_inventory_count(inventory))
+print("Total quantity:", get_total_quantity(inventory))
+top_item = get_top_item(inventory)
+print("Top item(s):", top_item)
+average_quantity = get_average_quantity(inventory)
+if average_quantity is not None:
+    print("Average quantity per item:", round(average_quantity, 2))
+else:
+    print("Average quantity per item: None (inventory is empty)")
