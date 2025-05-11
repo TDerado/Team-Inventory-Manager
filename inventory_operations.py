@@ -33,7 +33,8 @@ def update_quantity(inventory, item_name, new_quantity):
         inventory.append({"name": item_name, "quantity": new_quantity})
 
 # Testing the functions
-inventory = []
+if __name__ == "__main__":
+    inventory = []
 
 add_item(inventory, "Apple", 5)
 add_item(inventory, "Banana", 3)
