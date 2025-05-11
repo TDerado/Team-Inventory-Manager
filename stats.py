@@ -37,16 +37,17 @@ def get_average_quantity(inventory):
     return total_quantity / count
 
 # Example usage
-print("Inventory:")
-for item in inventory:
-    print(f"- {item['name']}: {item['quantity']}")
-
-print("\nDistinct items:", get_inventory_count(inventory))
-print("Total quantity:", get_total_quantity(inventory))
-print("Top item(s):", get_top_item(inventory))
-
-#  For Main tests
 if __name__ == "__main__":
+    print("Inventory:")
+    for item in inventory:
+        print(f"- {item['name']}: {item['quantity']}")
+
+    print("\nDistinct items:", get_inventory_count(inventory))
+    print("Total quantity:", get_total_quantity(inventory))
+    print("Top item(s):", get_top_item(inventory))
+
+    #  For Main tests
+
     print("Inventory:")
     for item in inventory:
         print("- " + item['name'] + ": " + str(item['quantity']))
