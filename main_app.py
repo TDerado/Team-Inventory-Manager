@@ -3,7 +3,7 @@ import validator # validate_item_name(name) - validate_quantity(qty)
 import inventory_operations # add_item(inventory, item_name, quantity) - remove_item(inventory, item_name) - update_quantity(inventory, item_name, new_qty)
 import search # - search_item(inventory, search_term)
 import stats # - get_inventory_count(inventory) - get_total_quantity(inventory) - get_top_item(inventory)
-#import persistence - save_inventory(inventory, filename="inventory_data.txt") - load_inventory(filename="inventory_data.txt")
+import persistence # - save_inventory(inventory, filename="inventory_data.txt") - load_inventory(filename="inventory_data.txt")
 
 # 1 - add_item - adds a item to the inventory
 # Modules needed to run (Input_manager, validator, Inventory_operations)
@@ -119,7 +119,7 @@ def show_stats(inventory):
         print(f'The inventory is empty!')
         return False
 
-    print(f'Inventory Statistics:')
+    print(f'\nInventory Statistics:')
     print(f'Total Distinct Items: {inventory_count}')
     print(f'Total Items: {total_quantity}')
     print(f'Highest Quantity Item: {top_item}')
@@ -128,34 +128,41 @@ def show_stats(inventory):
 
 # commented till persistence is ready
 
-# # 6 - save inventory - updates the inventory file with the current in-memory data struture 'inventory'
-# # modules required - (persistence)
-# def save_inventory_main(inventory):
-#     try:
-#         persistence.save_inventory(inventory)
-#     except Exception as e:
-#         print(f'Failed to save inventory: {e}')
-#         return False
-#     return True
+# 6 - save inventory - updates the inventory file with the current in-memory data struture 'inventory'
+# modules required - (persistence)
+def save_inventory_main(inventory, inv_file):
+    try:
+        if inv_file:
+            persistence.save_inventory(inventory, inv_file)
+        else:
+            persistence.save_inventory(inventory)
+    except Exception as e:
+        print(f'Failed to save inventory: {e}')
+        return False
+    return True
 
-# # 7 - load inventory - loads the inventory file into the current in-memory data struture 'inventory'
-# # modules required - (persistence)
-# def load_inventory_main(inventory):
-#     try:
-#         persistence.load_inventory(inventory)
-#     except Exception as e:
-#         print(f'Failed to load inventory: {e}')
-#         return False
-#     return True
+# 7 - load inventory - loads the inventory file into the current in-memory data struture 'inventory'
+# modules required - (persistence)
+def load_inventory_main(inventory, inv_file):
+    try:
+        if inv_file:
+            inventory = persistence.load_inventory(inv_file)
+        else:
+            inventory = persistence.load_inventory()
+    except Exception as e:
+        print(f'Failed to load inventory: {e}')
+        return False
+    return inventory
 
 if __name__ == "__main__":
     end = False
+    print("\nInventory Manager:")
+    inv_file = input("Select Inventory file (leave blank for default): ")
     try:
-        # inventory = persistence.load_inventory()
         inventory = []
+        inventory = load_inventory_main(inventory, inv_file)
     except Exception as e:
         print(f"Warning, could not preload inventory! load inventory before continuing: {e}")
-    print("\nInventory Manager:")
     while not end:
         result = True
         input("\n(Press enter to continue)")
@@ -189,10 +196,13 @@ if __name__ == "__main__":
                     result = search_items(inventory)
                 case '5' | "show stats":
                     result = show_stats(inventory)
-                # case '6' | "save inventory":
-                #     result = save_inventory_main(inventory)
-                # case '7' | "load inventory":
-                #     result = load_inventory_main(inventory)
+                case '6' | "save inventory":
+                    result = save_inventory_main(inventory, inv_file)
+                case '7' | "load inventory":
+                    inv_file = input("Select Inventory file (leave blank for default): ")
+                    inventory = load_inventory_main(inventory, inv_file)
+                    if inventory == False:
+                        result = False
                 case '8' | "exit":
                     end = True
             
