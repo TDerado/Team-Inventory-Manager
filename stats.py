@@ -4,7 +4,7 @@ inventory = [
     {'name': 'banana', 'quantity': 5},
     {'name': 'orange', 'quantity': 10},
     {'name': 'grape', 'quantity': 3}
-]
+] 
 
 # Function to count distinct items in the inventory
 def get_inventory_count(inventory):
