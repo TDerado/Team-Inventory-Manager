@@ -46,6 +46,12 @@ def get_item_details():
     return (item_name, quantity)
 
 
+def remove_item_name():
+    item_name = input(
+        "Please provide the name for the item you want to remove:")
+    return item_name
+
+
 def get_search_term():
     search_term = input("Enter a word to search for: ")
     return search_term
