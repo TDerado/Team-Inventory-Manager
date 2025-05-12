@@ -1,4 +1,5 @@
  **Functions Explained Module C:**
+Initialization: Before the loop starts, found is set to False, indicating that the item hasn't been found yet.
 
 add_item(inventory, item_name, quantity)
 
